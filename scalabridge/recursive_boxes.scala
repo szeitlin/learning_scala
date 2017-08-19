@@ -39,3 +39,24 @@ def chessboard(count:Int): Image = {
 
         }
     }
+
+def growingBoxes(count:Int): Image = {
+    count match{
+        case 0 => Image.empty
+        case n => growingBoxes(n-1) beside Image.rectangle(n*10, n*10)
+    }
+}
+
+def growingBoxes2(count:Int, size:Int): Image = {
+    count match{
+        case 0 => Image.empty
+        case n => Image.rectangle(size, size) beside growingBoxes2(n-1, size + 10)
+    }
+}
+
+def gradientBoxes(count:Int, color:Color): Image = {
+    count match{
+        case 0 => Image.empty
+        case n => Image.rectangle(10,10).fillColor(color) beside gradientBoxes(n-1, color.spin(30.degrees))
+    }
+}
